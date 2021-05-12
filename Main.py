@@ -2,7 +2,7 @@ import discord
 import os
 
 client = discord.Client()
-#TOKEN  = 
+#TOKEN  = Removed for movement to rasberry PI via upload to GITHUB
 
 @client.event
 async def on_ready():
@@ -16,4 +16,4 @@ async def on_message(message):
     if message.content.startswith('$hey Sharet-Chan'):
         await message.channel.send('Hello! OWO')
 
-client.run('ODQxNzk5OTY4OTgwMzM2Njcx.YJsBUA.1_0jkgNT0uwpaeCU4s0aJZ6uj8U')
+client.run('TOKEN')
