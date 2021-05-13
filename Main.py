@@ -1,28 +1,27 @@
 import discord
 import os
-
+#imports commands for discord lib
 from discord.ext import commands
-
+#imports dotenv for masking private data from git and unwanted users
 from dotenv import load_dotenv
+#may not keep used to help gather path for .env file 
+#from pathlib import Path
 
-from pathlib import Path
+#dotenv_path = Path(str('/.env'))
 
-dotenv_path = Path("/home/pi/Documents/Sharet-Chan/.gitignore/.env")
-
-load_dotenv(dotenv_path=dotenv_path)
+load_dotenv("/home/pi/Documents/Sharet-Chan/.gitignore/.env") #TODO convert to relative at some point. will have to be changed if moved
 
 client = discord.Client()
 
-TOKEN = os.getenv("TOKEN") #currently returns as null, causes us not to be able to run code
-
-#TOKEN='ODQxNzk5OTY4OTgwMzM2Njcx.YJsBUA.sOhB0fxeWjyPSGsToe8iz3JqHmE'
+TOKEN = os.getenv("TOKEN") 
 
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
 @client.event
-async def on_message(message):
+#listens for action within server to messagge user back with simple hello statement 
+async def on_message(message): #TODO remove and move to command file once path to gitignore is figured out
     if message.author == client.user:
         return
 
