@@ -1,10 +1,9 @@
 import discord
 import os
-
-from datetime import datetime
+import datetime
 
 #file for console calls when messaging user
-
-def say_hi():
-    time_local = now.strftime("%H:%M:%S")
-    print(time_local, ' messaged ')         #TODO show user and channel message sent in, what function used
+def get_time():
+    today = datetime.datetime.now()
+    date_time = today.strftime("%m/%d/%Y, %H:%M:%S")
+    return date_time

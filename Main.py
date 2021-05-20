@@ -1,7 +1,7 @@
 import discord
 import os
-import chat_repsonse
-
+import chat_response
+import console_text
 #imports commands for discord lib
 from discord.ext import commands
 
@@ -17,26 +17,18 @@ TOKEN = os.getenv("TOKEN")
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    print("initial login
+    print('initial login ', console_text.get_time())
 
-@client.event
 #listens for action within server to
 #determine which action group function to call
 
 #REFACTOR 05/20/21 04:25 LEXXLESS
-
-async def on_message(message):                              #TODO possibly change to switch statement for readabilty
+@client.event
+async def on_message(message):
     if message.author == client.user:
         return
-    
-    if message.content.startswith('$'):
-        chat_response.check_contents():
-            
-    if message.contents.startswith('!'):
-        return                                              #TODO add in other actions here (such as music call in)
-    
-##  if message.content.startswith('$hey Sharet-Chan'):
-##    await message.channel.send('Hello! UwU')              #TODO remove after testing chat_response file
+    else:
+        await message.channel.send(chat_response.check_contents(message))
 
 client.run(TOKEN)
 
