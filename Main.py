@@ -1,13 +1,12 @@
 import discord
 import os
+import chat_response
+import console_text
 #imports commands for discord lib
 from discord.ext import commands
+
 #imports dotenv for masking private data from git and unwanted users
 from dotenv import load_dotenv
-#may not keep used to help gather path for .env file 
-#from pathlib import Path
-
-#dotenv_path = Path(str('/.env'))
 
 load_dotenv("/home/pi/Documents/Sharet-Chan/.gitignore/.env") #TODO convert to relative at some point. will have to be changed if moved
 
@@ -18,15 +17,18 @@ TOKEN = os.getenv("TOKEN")
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
+    print('initial login ', console_text.get_time())
 
+#listens for action within server to
+#determine which action group function to call
+
+#REFACTOR 05/20/21 04:25 LEXXLESS
 @client.event
-#listens for action within server to messagge user back with simple hello statement 
-async def on_message(message): #TODO remove and move to command file once path to gitignore is figured out
+async def on_message(message):
     if message.author == client.user:
         return
-
-    if message.content.startswith('$hey Sharet-Chan'):
-        await message.channel.send('Hello! UwU')
+    else:
+        await message.channel.send(chat_response.check_contents(message))
 
 client.run(TOKEN)
 
